@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="view_sale_order_form_inherit" model="ir.ui.view">
+		<field name="name">sale.order.form.inherit</field>
+		<field name="model">sale.order</field>
+		<field name="inherit_id" ref="sale.view_order_form"/>
+		<field name="arch" type="xml">
+			<xpath expr="//button[@id='action_confirm']" position="replace"></xpath>
+			<xpath expr="//button[@name='action_confirm']" position="replace">
+				<field name="crm_won_stage" invisible="1"/>
+				<button name="crm_won_update" string="Confirm" type="object" class="btn-primary" invisible="state != 'draft'" data-hotkey="q"/>
+				<button name="action_update_opportunity_won" string="Won Opportunity" type="object" class="btn-primary" invisible="state != 'sale' or crm_won_stage == True"/>
+			</xpath>
+		</field>
+	</record>
+</odoo>
